@@ -1,0 +1,35 @@
+{
+  "name": "chatter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "dev": "webpack-dev-server --open",
+    "tmplDev": "node scripts/tmplDev.js",
+    "deploy": "npm run build; firebase deploy"
+  },
+  "author": "Moritz Rebbert <moritz.rebbert@udo.edu>",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "html-webpack-plugin": "^2.30.1",
+    "live-server": "^1.2.0",
+    "node-sass": "^4.5.3",
+    "pug": "^2.0.0-rc.4",
+    "pug-loader": "^2.3.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "webpack-dev-server": "^2.9.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "snapsvg": "^0.5.1",
+    "snapsvg-cjs": "0.0.6",
+    "spectre.css": "^0.4.5",
+    "tracery-grammar": "^2.7.3",
+    "vue": "^2.5.2",
+    "webpack": "^3.10.0"
+  }
+}
