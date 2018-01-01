@@ -1,0 +1,265 @@
+.chat-size {
+    width: 100%;
+    height: 100%;
+}
+
+.chat {
+    background: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat header {
+    width: 100%;
+    height: 120px;
+    background: black;
+}
+
+.chat main{
+    flex: 1;
+    padding: 0 30px 0 30px;
+    overflow: scroll;
+}
+
+.chat main:after {
+    content: "";
+    display: block;
+    height: 100px;
+    width: 100%;
+    clear: both;
+}
+
+.chat footer {
+    width: 100%;
+    height: 120px;
+    background: black;
+    position: relative;
+}
+
+.chat .answer {
+    width: 100%;
+    min-height: 130px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 50px;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: row;
+}
+
+.chat .answer .content {
+    flex: 1;
+    margin: 20px;
+    min-height: 100px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.chat .answer .send {
+    margin-top: 20px;
+    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: dimgray;
+    border-radius: 50px;
+}
+
+@keyframes shadowPulse {
+    0% {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    50% {
+        box-shadow: 0px 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    100% {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.chat .glow {
+    animation-name: shadowPulse;
+    animation-duration: 1.5s;
+    animation-iteration-count: 8;
+    animation-timing-function: linear;
+}
+
+.chat .answer .send img {
+    display: block;
+    margin: 15px 9px;
+    width: 70px;
+    height: 70px;
+}
+
+.chat .options {
+    width: 100%;
+    background: rgba(105, 105, 105, 1);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0;
+    color: rgba(255, 255, 255, 0);
+}
+
+.chat .options.show {
+    /*fade in/out animation*/
+    font-size: 50px;
+    color: rgba(255, 255, 255, 1.0);
+    transition: font-size 0.25s,
+    color 0.25s 0.25s;
+}
+
+.chat .options.hide {
+    /*fade in/out animation*/
+    font-size: 0;
+    color: rgba(255, 255, 255, 0);
+    transition: font-size 0.25s 0.25s,
+    color 0.25s;
+}
+
+
+@keyframes colorPulse {
+    0% {
+        background: rgba(105, 105, 105, 1);
+    }
+
+    50% {
+        background: rgba(75, 75, 75, 1);
+    }
+
+    100% {
+        background: rgba(105, 105, 105, 1);
+    }
+}
+
+.chat .options > div {
+    animation-name: colorPulse;
+    animation-duration: 1.5s;
+    animation-iteration-count: 8;
+    animation-timing-function: linear;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
+    padding: 20px;
+}
+
+.chat .options > div:nth-child(odd) {
+    animation-delay: 0.75s;
+}
+
+
+
+.chat .message {
+    max-width: 85%;
+    clear: both;
+}
+
+.chat .message.other {
+    float: left;
+}
+
+.chat .message.me {
+    float: right;
+}
+
+.chat .message .content {
+    font-size: 50px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.chat .message .time {
+    display: none;
+    font-size: 30px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: grey;
+}
+
+.chat .message.me .time {
+    float: left;
+}
+
+.chat .message.other .time {
+    float: right;
+}
+
+.chat .bbl-right,
+.chat .bbl-left,
+.chat .message {
+    margin-top: 40px;
+    padding: 0 20px 0 20px;
+    position: relative;
+
+    border-radius: .4em;
+    transition: width 10s, height 2s;
+}
+
+.chat .message.me {
+    background: #05bb6f;
+}
+
+.chat .message.other {
+    background: #00dff2;
+}
+
+.chat .bbl-right:after,
+.chat .message.me:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 35px solid transparent;
+    border-left-color: #05bb6f;
+    border-right: 0;
+    border-top: 0;
+    margin-top: -10px;
+    margin-right: -20px;
+}
+
+.chat .bbl-left:after, .message.other:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 35px solid transparent;
+    border-right-color: #00dff2;
+    border-left: 0;
+    border-top: 0;
+    margin-top: -10px;
+    margin-left: -20px;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 1;
+    }
+}
+
+.chat .typing {
+    height: 0.5em;
+    vertical-align: middle;
+}
+
+.chat .typing span {
+    height: 15px;
+    width: 15px;
+    float: left;
+    margin: 0.5em 1px;
+    background-color: darkgreen;
+    display: block;
+    border-radius: 50%;
+    opacity: 0.4;
+}
+
+.chat .typing span:nth-of-type(1) {
+    animation: 1s blink infinite 0.3333s;
+}
+
+.chat .typing span:nth-of-type(2) {
+    animation: 1s blink infinite 0.6666s;
+}
+
+.chat .typing span:nth-of-type(3) {
+    animation: 1s blink infinite 1s;
+}
