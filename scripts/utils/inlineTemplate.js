@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const htmlpath = path.resolve('./src/template/index.html');
 const rootpath =  path.resolve('./src/template');
-const target = path.resolve('dist/template');
+const target = path.resolve('dist/app/');
 
 
 function prepareHtml(){
@@ -33,13 +33,12 @@ function prepareHtml(){
 }
 
 function writeFile(html){
-    fs.writeFile(path.resolve(target, "index.html"), html);
+    fs.writeFile(path.resolve(target, "template.html"), html);
 }
 
 module.exports = {
     run : ()=>{
-        fs.emptyDir(target)
-            .then(prepareHtml)
+        prepareHtml()
             .then(writeFile)
             .catch(console.error);
     }

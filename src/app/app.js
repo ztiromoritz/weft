@@ -27,9 +27,11 @@ Story.fromStorage().then((story) => {
         return options.map(option => option.link);
     }
 
+
+    const TEMPLATE_URL = "./template.html";
 //const TEMPLATE_URL = "/weft-pub/template/";  //TODO: fixme !! Quick and dirty;
 //    const TEMPLATE_URL = "/weft/template/";  //TODO: fixme !! Quick and dirty;
-const TEMPLATE_URL = "http://localhost:8888/template";  //TODO: fixme !! Quick and dirty;
+//const TEMPLATE_URL = "http://localhost:8888/template";  //TODO: fixme !! Quick and dirty;
 
 
     if ($graphElement) {
