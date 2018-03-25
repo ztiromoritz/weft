@@ -16,6 +16,13 @@
   },
   "author": "Moritz Rebbert <moritz.rebbert@udo.edu>",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ztiromoritz/weft/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ztiromoritz/weft.git"
+  },
   "devDependencies": {
     "@types/fs-extra": "^5.0.0",
     "chokidar": "^2.0.0",
