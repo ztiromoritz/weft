@@ -1,6 +1,20 @@
-(function (global) {
-    global.chatter = {};
-    const $chat = document.querySelector("#chat");
+(function (root, factory) {
+    /*global module, define, define*/
+    /* istanbul ignore next */
+    if (typeof exports === 'object') {
+        // COMMON-JS
+        module.exports = factory();
+    } else if (typeof define === 'function' && define['amd']) {
+        // Asynchronous Module Definition AMD
+        define([], factory);
+    } else {
+        //GLOBAL (e.g. browser)
+        root['chatter'] = factory();
+    }
+}(this, function () {
+    'use strict';
+    var chatter = {};
+    var $chat = document.querySelector("#chat");
 
 
     function removeClass(el, className) {
@@ -22,14 +36,13 @@
         var match = regex.exec(str);
         console.log(str, match);
         return {
-            user: match[1] === 'MO' ? "me" : "other",
+            user: match[1].toLowerCase() === 'me' ? "me" : match[1],
             content: match[2]
         };
     };
 
-
     /**
-     * !!What a Salat!
+     * !!What a Salad!
      * @param $element
      * @param options
      * @param nextCallback
@@ -105,52 +118,88 @@
         });
     };
 
+    function getImageUrl(users, username) {
+        var url = null;
+        users.forEach(function (user) {
+            if (username === user.name) {
+                url = user.url;
+            }
+        });
+        return url;
+    }
+
+    function getBackgroundStyle(username){
+        var bg = chatter_util.stringToColour(username);
+        var color = chatter_util.invertColor(bg);
+        return 'background-color: ' + bg + '; color: ' + color + ';';
+    }
+
+
     /**
      *
      * @param {{content, user, typing}} msg
      * @param {Function} [done]
      */
-    chatter.addMessage = function (msg, done) {
-        const $answerWrapper = document.getElementById('answerInput');
-        const $answerButton = document.getElementById('answerButton');
-        const $message = document.createElement("div");
+    chatter.addMessage = function (msg, users, done) {
+        var $answerWrapper = document.getElementById('answerInput');
+        var $answerButton = document.getElementById('answerButton');
+        var $messageWrapper = document.createElement("div");
+        $messageWrapper.classList.add("message-wrapper");
+        $messageWrapper.classList.add(msg.user.toLowerCase()==='me'?'me':'other');
+        var $message = document.createElement("div");
+        if (msg.user.toLowerCase() !== 'me') {
+
+            var imageUrl = getImageUrl(users,msg.user);
+            if(imageUrl){
+                var $icon = document.createElement("img");
+                $icon.src = imageUrl;
+                $icon.classList.add("user");
+                $messageWrapper.appendChild($icon);
+            }else{
+                var $letter = document.createElement("div");
+                $letter.classList.add("user");
+                $letter.classList.add("letter");
+                $letter.innerHTML = msg.user[0].toUpperCase();
+                $messageWrapper.appendChild($letter);
+            }
+        }
+        $messageWrapper.appendChild($message);
         $message.classList.add("message");
-        $message.classList.add(msg.user);
-        // $chat.appendChild($message);
+        $message.classList.add(msg.user.toLowerCase()==='me'?'me':'other');
+
         $chat.scrollTop = $chat.scrollHeight;
 
 
-        const writeTyping = function () {
+        var writeTyping = function () {
             return new Promise(function (resolve) {
-                if (msg.user === 'me') {
+                if (msg.user.toLowerCase() === 'me') {
                     var $answer = document.createElement('span');
                     $answer.innerHTML = msg.content;
                     var handler = bubble($answer, {grow: true});
                     $answerWrapper.appendChild($answer);
 
-                    var submitMessage = function(){
+                    var submitMessage = function () {
                         removeClass($answerButton, 'glow');
                         $answerButton.removeEventListener('click', submitMessage);
-                        $chat.appendChild($message);
+                        $chat.appendChild($messageWrapper);
                         $answer.innerHTML = "";
                         resolve();
                     };
 
                     handler.start(function () {
-                        addClass($answerButton,'glow');
+                        addClass($answerButton, 'glow');
                         $answerButton.addEventListener('click', submitMessage);
                     }, 30);
                 } else {
                     $message.innerHTML = '<div class="content typing"><span></span><span></span><span></span></div>';
-                    $chat.appendChild($message);
+                    $chat.appendChild($messageWrapper);
                     setTimeout(resolve, msg.typing);
                 }
             });
         };
-        const writeMessage = function () {
+        var writeMessage = function () {
             console.log("write message");
-            $message.innerHTML = '<div class="user"></div>' +
-                '<div class="content">' + msg.content + '</div>';
+            $message.innerHTML = '<div class="content">' + msg.content + '</div>';
             $chat.scrollTop = $chat.scrollHeight;
             if (typeof done === 'function') {
                 done();
@@ -162,43 +211,70 @@
     };
 
 
+    chatter.showErrorMessage = function (message) {
+        var $errorMessage = document.getElementById('error-message');
+        $errorMessage.innerHTML = message;
+        addClass($errorMessage, 'show');
+        $errorMessage.addEventListener('click', chatter.hideErrorMessage);
+    };
+
+    chatter.hideErrorMessage = function () {
+        var $errorMessage = document.getElementById('error-message');
+        $errorMessage.removeEventListener('click', chatter.hideErrorMessage);
+        removeClass($errorMessage, 'show');
+    };
+
     var Type = lmn.Step.Type;
     var dialogStore = new lmn.DialogStore();
-    dialogStore.addDialog("default", exampleDialog);
 
-    var dialog = dialogStore.startDialog("default");
+    if (typeof CHATTER_DIALOG !== 'undefined') {
 
-
-    var wait = function (timeout, callback) {
-        return function () {
-            setTimeout(callback, timeout);
+        dialogStore.addDialog("default", CHATTER_DIALOG);
+        var dialog = dialogStore.startDialog("default");
+        var wait = function (timeout, callback) {
+            return function () {
+                setTimeout(callback, timeout);
+            };
         };
-    };
 
-    var nextStep = function (index) {
-        var step = dialog.next(index);
-        console.log(step);
-        switch (step.getType()) {
-            case Type.MESSAGE:
-                var parsed = parseContent(step.getContent());
-                chatter.addMessage({
-                    user: parsed.user,
-                    content: parsed.content,
-                    typing: 1500
-                }, wait(1500, nextStep));
-                break;
-            case Type.QUESTION:
-                chatter.showOptions(step.getAvailableOptions()).then(function (selectedIndex) {
-                    nextStep(selectedIndex);
-                });
-                break;
-            case Type.END:
-            case Type.UNFINISHED_DIALOG:
-            default:
+        var nextStep = function (index) {
+            var step = dialog.next(index);
+            //console.log('nextStep', step);
+            switch (step.getType()) {
+                case Type.MESSAGE:
+                    var parsed = parseContent(step.getContent());
+                    chatter.addMessage({
+                        user: parsed.user,
+                        content: parsed.content,
+                        typing: 1500
+                    }, CHATTER_DIALOG.data.users,wait(1500, nextStep));
+                    break;
+                case Type.QUESTION:
+                    chatter.showOptions(step.getAvailableOptions()).then(function (selectedIndex) {
+                        nextStep(selectedIndex);
+                    });
+                    break;
+                case Type.END:
+                case Type.UNFINISHED_DIALOG:
+                default:
+            }
+        };
+
+
+        try {
+            dialog.selectStepByLabel('Start');
+
+            nextStep();
+        } catch (e) {
+            chatter.showErrorMessage(e.message);
+            //error Message
+            console.error(e);
         }
-    };
-
-    nextStep();
 
 
-})(this);
+    }
+
+
+    return chatter;
+
+}));

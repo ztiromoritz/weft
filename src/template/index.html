@@ -6,61 +6,33 @@
     <title>Static Template</title>
     <meta name="description" content="Chatter">
     <meta name="author" content="Moritz Rebbert">
-    <link rel="stylesheet" href="css/basic.css">
-    <link rel="stylesheet" href="../common/css/chat.css">
+    <link inline inline-compress rel="stylesheet" href="css/basic.css">
+    <link inline inline-compress rel="stylesheet" href="../common/css/chat.css">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta id="viewport" name=viewport content="width=1280px; initial-scale=0.5">
-    <script src="js/example-dialog.js"></script>
-    <script src="js/lmn.js"></script>
-    <script src="js/bubble.js"></script>
-    <script src="js/tracery.js"></script>
+
 </head>
 
 <body>
-<footer class="chat chat-size">
-    <header>
-        <button>START</button>
-        <button>STOP</button>
-    </header>
-    <main id="chat">
-        <div class="message me">
-            <div class="user"></div>
-            <div class="content">Hello</div>
-            <div class="time">2:59</div>
-        </div>
-
-        <div class="message me">
-            <div class="user"></div>
-            <div class="content">Hi!!</div>
-            <div class="time">3:00</div>
-        </div>
-
-        <div class="message other">
-            <div class="user"></div>
-            <div class="content">Lore ipsum foo<br>✊</div>
-            <div class="time">3:07</div>
-        </div>
-    </main>
-
-    <div class="options">
-
-    </div>
-
+<div class="chat chat-size">
+    <header></header>
+    <div id="error-message"></div>
+    <main id="chat"></main>
+    <div class="options"></div>
     <div class="answer">
-        <div class="content" id="answerInput">
-
-        </div>
-        <div class="send" id="answerButton">
-            <img src="../common/assets/paper-plane.svg">
-        </div>
+        <div class="content" id="answerInput"></div>
+        <div class="send" id="answerButton"><img inline src="../common/assets/paper-plane.svg"></div>
     </div>
+    <footer></footer>
 
-    <footer>
-        <button>Camera</button>
-        <input type="file" accept="image/*">
-    </footer>
-    <script src="https://cdn.polyfill.io/v2/polyfill.js?features=Promise"></script>
-    <script src="js/chatter.js"></script>
+    <!-- $DIALOG_PLACE_HOLDER$ -->
+
+    <!-- $INTERNAL_DATA_START$ $WEFT_INTERNAL_DATA$ $INTERNAL_DATA_END$ -->
+
+    <!--<script src="https://cdn.polyfill.io/v2/polyfill.js?features=Promise"></script>-->
+    <script inline inline-compress src="lib/lmn.js"></script>
+    <script inline inline-compress src="lib/bubble.js"></script>
+    <script inline inline-compress src="../common/js/chatter_util.js"></script>
+    <script inline inline-compress src="js/chatter.js"></script>
 </div>
 </body>
 </html>

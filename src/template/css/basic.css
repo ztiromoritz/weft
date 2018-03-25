@@ -9,6 +9,18 @@ html, body {
     height: 100%;
 }
 
+#error-message {
+    display: none;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    min-height: 50px;
+    font-size: 80px;
+}
 
+#error-message.show {
+    display: block;
+}
 
 

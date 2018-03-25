@@ -85,7 +85,8 @@
     animation-timing-function: linear;
 }
 
-.chat .answer .send img {
+.chat .answer .send img,
+.chat .answer .send svg{
     display: block;
     margin: 15px 9px;
     width: 70px;
@@ -145,23 +146,26 @@
     animation-delay: 0.75s;
 }
 
-
-
-.chat .message {
-    max-width: 85%;
+.chat .message-wrapper {
     clear: both;
 }
 
-.chat .message.other {
+.chat .message {
+    max-width: 80%;
+
+}
+
+.chat .other .message {
     float: left;
 }
 
-.chat .message.me {
+.chat .me .message {
     float: right;
 }
 
 .chat .message .content {
     font-size: 50px;
+    padding: 18px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -172,11 +176,11 @@
     color: grey;
 }
 
-.chat .message.me .time {
+.chat .me .message .time {
     float: left;
 }
 
-.chat .message.other .time {
+.chat .other .message .time {
     float: right;
 }
 
@@ -191,16 +195,16 @@
     transition: width 10s, height 2s;
 }
 
-.chat .message.me {
+.chat .me .message {
     background: #05bb6f;
 }
 
-.chat .message.other {
+.chat .other .message {
     background: #00dff2;
 }
 
 .chat .bbl-right:after,
-.chat .message.me:after {
+.chat .me .message:after {
     content: '';
     position: absolute;
     right: 0;
@@ -215,11 +219,11 @@
     margin-right: -20px;
 }
 
-.chat .bbl-left:after, .message.other:after {
+.chat .bbl-left:after, .chat .other .message:after {
     content: '';
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 48px;
     width: 0;
     height: 0;
     border: 35px solid transparent;
@@ -263,3 +267,23 @@
 .chat .typing span:nth-of-type(3) {
     animation: 1s blink infinite 1s;
 }
+
+.chat .other .message {
+    margin-left: 30px;
+}
+
+.chat .message-wrapper.other .user {
+    margin-top: 30px;
+    width:100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: red;
+    float: left;
+}
+
+.chat .message-wrapper.other .letter {
+    font-size: 85px;
+    line-height: 100px;
+    text-align: center;
+}
+

@@ -1,39 +1,76 @@
 ## TODO
+### Find a name
+ * weft - Schussfaden
+ * woof - Schussfaden (warp and woof Kette und Schuss), twine assoziation, bellen, 
+        :( gibts schon bei npmjs
+ * heddle - Litze, gibts noch nicht als npm,
+ * zwirn
 ### GraphEditor 
  * Minimal
- * [ ] Id im Square
+ * [X] Id im Square
  * [x] Save
  * [x] Restore
  * [x] SaveOnMove
  * [x] Open editor on square click
  * [x] Editor: Id, Content, 
- * [ ] SaveOnCloseEditor
- * [ ] Add Square/Passage with Button
- * [ ] Add Square/Passage in PassageEditor 
+ * [X] SaveOnCloseEditor
+ * [x] Add Square/Passage with Button
+ * [x] Single Selection
+ * [x] Multiselect
+ * [x] Remove
+ * [x] Add Square/Passage in PassageEditor 
+ * [x] Dedicated Start Entry. ()Call it "Start" and it will work)
+ * [ ] Dedicated End Text
+ * [x] Dublicate detection on ID change
+ * [ ] Editor Preview scrolling
+ * [ ] Simple Fullscreens
+ * [ ] Menues
+ * [ ] Story: Title and author
+ * [ ] Tags
+ * [ ] Template link fixed.
+ * Extra
  * [ ] Jump to passage from PassageEditor
  * [ ] Back Button/History Stack in PassageEditor Session
- * [ ] Dedicated Start Entry
- * Extra
  * [ ] Passage Editor: Warnings when Message after Option
  * [ ] Name der Story: StoryTitle/StoryAuthor passage
- * [ ] Scroll in Chat Preview is broken
+ * [ ] CSS: Scroll in Chat Preview is broken
  * [ ] Configure others Avatar and Name
- * [ ] Selection and Drag+Drop of Groups  
+ * [ ] Selection and Drag+Drop of Groups
+ * [ ] Infinite canvas 
+ * [ ] Naming: Passage, Node, Square 
+ * [ ] Grahical squares have form of mobile phone with chat preview.
+ * [ ] Scriptability, custom macros
+ * [ ] LMN: Message -> Passage, Question -> Decision
+
+ 
+ ### Game generator
+  * [x] Export/Build HTML
+    * [x] Model to twee
+    * [x] twee to lmn
+  * [ ] Import from HTML (keep the model!!)
+  * [ ] Twee import/export
+  * [x] Inline svg
+  * [x] Inline base64
+  * [x] Inline scripts
+  * [x] Inline css
  
  
 ### Template
+ * [ ] Tipp sounds
  * [ ] Bilder
  * [ ] 
     * [ ] Selfies/Kamera einbinden/ 
     * [ ] Bild hochladen. echt. aus Foto Ordner
     * [ ] Bild hochladen aus "virtueller" Foto Ordner. Das Spiel gibt ein paar fotos vor
  * [ ] Karten integration
- * [ ] keine Tipp Animation für "me". Bzw. Der Text wird im Eingabefeld "getippt" 
+ * [x] keine Tipp Animation für "me". Bzw. Der Text wird im Eingabefeld "getippt" 
             -> https://github.com/ztiromoritz/bubble/
  * [X] Auswahl on QUESTION
  * [ ] Themes
- * [ ] twee2lmn.js
- * [ ] Start/Pause => Api und Buttons 
+ * [ ] Build in twemoji-awesome.css
+ * [x] twee2lmn.js
+ * [x] Start => Api und Buttons 
+ * [ ] Pause => Api und Buttons 
  * [ ] Save state to localStorage.
  * [ ] LMN -> Aufzeichnung/Log und Replay.
  * [ ] Typing animation as svg
@@ -45,14 +82,40 @@
  * [ ] Style Template
  * [ ] Include svg  https://stackoverflow.com/questions/11978995/how-to-change-color-of-svg-image-using-css-jquery-svg-image-replacement
  * [ ] Auto Send settings.
-### Game generator
- * [ ] Export/Build HTML
- * [ ] Import from HTML (keep the model)
- * [ ] Twee import export
- * [ ] Inline svg
- * [ ] Inline base64
- * [ ] Inline scripts
- * [ ] Inline css
+ * [ ] Tags at passages
+ * [ ] Javascript Passages
+ * [ ] Extendability, userdefined Macros
+ * [ ] Non Chat messages/Narrator/Game Over-Screen
+   * [ ] <<Me "Hello">>
+   * [ ] <<Other "Hello">>
+   * [ ] <<Message "Foo">>
+   * [ ] <<Screen>> <</Screen>>
+   * [ ] <<Timeout 200>>
+   * [ ] <<Image "">>
+   * [ ] <<MeTakeSelfie>>  
+   * [ ] <<MeUploadFile>> 
+   * [ ] <<PushNotification>> may be fake
+ * [ ] Long running timeout. Realtime feature. Does this work in browser
+ * [ ] Mobile native compiler  
+   
+ * [ ] Chat template als es5 lib die an beiden Stellen verwendet werden kann.
+ *     Why so complicated = (IDE in es6 with vue, template: vanilla js)
+          * Because hackability of the template should be keept.
+          * No further webpack and Api knowledge is needed, when you want to hack the template.
+ * Create a Logo
+ * Convert the   
+ * [x] inline images in user icon 
+ * [ ] --Grössenbeschränkung icons--
+ * [ ] inline images in chat content
+ * [ ] Project mit allen Sourcen und Assets
+ * [x] IndexDB für die Dateien.
+ * [ ] Import/Export Twee 
+ * [ ] Import/Export des Projects
+ * [ ] Auto graph outliner. 
+ * [ ] Help/Cheatsheet in Passage Editor
+ * [ ] CSS Editor for Style Passage.
+ * [ ] RAW Editor for simple passage, to use it for twine stories with other templates
+
  
 ## Links
  * [https://leaverou.github.io/bubbly/](https://leaverou.github.io/bubbly/)

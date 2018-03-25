@@ -1,7 +1,7 @@
 window.exampleDialog = {
     dialog: [
         ['<<MO "dodo asdf asdfas d dddfasd asd edasd fads\n asdfasdf asdfas asdf \na ASFD ">>'],
-        ['<<MO "asf">>', [
+        ['', [ //<!-- this message will be ignored by
           ["Take A", "A"],
           ["Take B", "B"]
         ],'C'],

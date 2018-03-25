@@ -68,12 +68,13 @@
     var OPTION_NEXT = STR + STR;
 
     var ERROR_CODE = {
-        "INVALID_DATA": "INVALID_DATA",
-        "INVALID_COMMAND": "INVALID_COMMAND",
-        "INVALID_OPTION": "INVALID_OPTION",
-        "NO_LABEL_FOR_NEXT": "NO_LABEL_FOR_NEXT",
-        "DUPLICATED_LABEL": "DUPLICATED_LABEL",
-        "NO_SUCH_DIALOG": "NO_SUCH_DIALOG"
+        INVALID_DATA: "INVALID_DATA",
+        INVALID_COMMAND: "INVALID_COMMAND",
+        INVALID_OPTION: "INVALID_OPTION",
+        NO_LABEL_FOR_NEXT: "NO_LABEL_FOR_NEXT",
+        NO_SUCH_LABEL: "NO_SUCH_LABEL",
+        DUPLICATED_LABEL: "DUPLICATED_LABEL",
+        NO_SUCH_DIALOG: "NO_SUCH_DIALOG"
     };
 
 
@@ -313,6 +314,15 @@
                 this.currentStep = this.dialog.labels[next];
                 return this.next();
             }
+        }
+    };
+
+    DialogInstance.prototype.selectStepByLabel = function(label){
+        var currentStep = this.dialog.labels[label];
+        if(Number.isInteger(currentStep)){
+            this.currentStep = currentStep;
+        }else{
+            throw new Error(ERROR_CODE.NO_SUCH_LABEL + ': No step exists with label: ' + label);
         }
     };
 

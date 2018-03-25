@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import './ChatMessage.js';
 import './ChatOption.js';
-import icon from '../../common/assets/paper-plane.svg';
 
 
 export default Vue.component('chat-editor', {
@@ -11,10 +10,10 @@ export default Vue.component('chat-editor', {
                     
                     </header>
                     <main>
-                        <chat-message v-for="(message,index) in messages" :content="message.content" :user="message.user" key="index"></chat-message>
+                        <chat-message v-for="(message,index) in messages" :content="message.content" :user="message.user" :key="index" :users="users"></chat-message>
                     </main>
                     <div class="options show">
-                        <chat-option v-for="(option,index) in options" :content="option.content" :link="options.link" key="index"></chat-option>
+                        <chat-option v-for="(option,index) in options" :content="option.content" :link="options.link" :key="index"></chat-option>
                     </div>
                     <footer>
                     
@@ -23,6 +22,7 @@ export default Vue.component('chat-editor', {
             </div>`,
     props: [
         'messages',
-        'options'
+        'options',
+        'users'
     ]
 });
