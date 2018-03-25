@@ -1,10 +1,7 @@
 /* globals require, module, __dirname */
 const path = require('path');
 
-const express = require('express');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: "./src/app/app.js", // bundle's entry point
@@ -26,7 +23,6 @@ module.exports = {
             inject: "body"
         })
         //new CopyWebpackPlugin([ { from: './dist/template', to: './app/template' } ])
-        //, new UglifyJSPlugin()
     ],
     devServer: {
 
