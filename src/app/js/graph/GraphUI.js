@@ -1,6 +1,6 @@
 import Snap from '../snap/SnapMod.js';
-import Events from '../Events.js';
 import _ from 'lodash';
+import {EventBus, Events} from '../EventBus.js';
 
 var gridSize = 50;
 
@@ -203,7 +203,7 @@ class GraphUI {
             x: element.attr('x'),
             y: element.attr('y')
         };
-        this.svgRoot.dispatchEvent(new CustomEvent(Events.CHATTER_ENTRY_MOVED, {detail}));
+        EventBus.$emit(Events.ENTRY_MOVED, detail);
     };
 
     onClick(element) {
@@ -218,7 +218,7 @@ class GraphUI {
 
     _selectionChanged(){
         const selected = this.getSelectedIds();
-        this.svgRoot.dispatchEvent(new CustomEvent(Events.CHATTER_SELECTION_CHANGED, {detail:{selected}}));
+        EventBus.$emit(Events.SELECTION_CHANGED, {selected});
     }
 
     _selectSingleElement(element) {
@@ -265,7 +265,7 @@ class GraphUI {
         const detail = {
             id: element.data('entryId'),
         };
-        this.svgRoot.dispatchEvent(new CustomEvent(Events.CHATTER_OPEN_EDITOR, {detail}));
+        EventBus.$emit(Events.OPEN_EDITOR);
     };
 
 

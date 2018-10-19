@@ -1,5 +1,4 @@
 import Vue from "vue";
-import Events from "../Events";
 
 export default Vue.component('userSettings', {
     template: `<div v-bind="{user}">

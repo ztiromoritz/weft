@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import './ChatEditor.js';
-import Events from '../Events.js';
 import Util from '../Util.js';
-
+import {EventBus, Events} from '../EventBus.js';
 
 export default new Vue({
     el: '#editor',
@@ -34,11 +33,9 @@ export default new Vue({
     </div>
     </div>`,
     data: {
-        $eventTarget: null, //  EventTarget-API not Vue Events
         active: false,
         entryId: "",
         content: "",
-
         messages: [],
         options: [],
         users: {}
@@ -46,22 +43,17 @@ export default new Vue({
     methods: {
         closeEditor() {
             this.updateData();
-            if (this.$eventTarget) {
-                //TODO how to do it better
-                //console.log(this.content,this.entryId,this.messages);
-                const detail = {
-                    id: this.entryId,
-                    originalId : this.originalId,
-                    content: this.content,
-                    messages: this.messages,
-                    options: JSON.parse(JSON.stringify(this.options))
-                };
-                this.$eventTarget.dispatchEvent(new CustomEvent(Events.CHATTER_ENTRY_CHANGED, {detail}))
-            }
+            const detail = {
+                id: this.entryId,
+                originalId: this.originalId,
+                content: this.content,
+                messages: this.messages,
+                options: JSON.parse(JSON.stringify(this.options))
+            };
+            EventBus.$emit(Events.ENTRY_CHANGED, detail);
             this.active = false;
         },
-        showEditor({id, data, children},users, $eventTarget) {
-            this.$eventTarget = $eventTarget;
+        showEditor({id, data, children}, users) {
             this.entryId = id;
             this.originalId = id;
             this.content = data.content;

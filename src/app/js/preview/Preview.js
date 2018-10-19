@@ -1,5 +1,4 @@
 import Vue from "vue";
-import Events from "../Events";
 import RefreshIcon from "../../../common/assets/refresh.svg";
 
 export default new Vue({

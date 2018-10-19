@@ -1,6 +1,6 @@
 import Vue from "vue";
 import '../avatar/avatar.js';
-import Events from "../Events";
+import {EventBus, Events} from '../EventBus.js';
 
 export default new Vue({
     el: '#upload',
@@ -35,19 +35,16 @@ export default new Vue({
         closeUpload() {
             this.active = false;
         },
-        showUpload($eventTarget) {
-            this.$eventTarget = $eventTarget;
+        showUpload() {
             this.active = true;
         },
         importHtml() {
-
             const files = this.$refs['file-input'].files;
             if (files.length > 0) {
                 const reader = new FileReader();
                 reader.onloadend = () => {
                    // console.log(reader.result);
-                    const detail = {html: reader.result};
-                    this.$eventTarget.dispatchEvent(new CustomEvent(Events.CHATTER_IMPORT_HTML_STRING, {detail}));
+                    EventBus.$emit(Events.IMPORT_HTML_STRING, {html: reader.result});
                 };
                 reader.readAsText(files[0], 'UTF-8');
             }

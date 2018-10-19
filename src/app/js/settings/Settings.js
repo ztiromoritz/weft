@@ -1,7 +1,6 @@
 import Vue from "vue";
 import '../avatar/avatar.js';
 import './UserSettings.js';
-import Events from "../Events";
 
 export default new Vue({
     el: '#settings',

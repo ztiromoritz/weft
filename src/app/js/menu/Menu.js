@@ -1,5 +1,4 @@
 import Vue from "vue";
-import Events from "../Events.js";
 import AddIcon from "../../../common/assets/plus.svg";
 import DownloadIcon from "../../../common/assets/download.svg";
 import PlayIcon from "../../../common/assets/play.svg";
@@ -7,7 +6,7 @@ import SettingsIcon from "../../../common/assets/sliders.svg";
 import DeleteIcon from "../../../common/assets/trash.svg";
 import UploadIcon from "../../../common/assets/upload.svg";
 import MediaIcon from "../../../common/assets/file-image-o.svg";
-
+import {EventBus, Events} from '../EventBus.js';
 
 export default new Vue({
     el: '#menu',
@@ -31,39 +30,33 @@ export default new Vue({
         DeleteIcon,
         UploadIcon,
         MediaIcon,
-        deleteEnabled : false,
-        eventTarget: null},
+        deleteEnabled: false
+    },
+    created() {
+        EventBus.$on(Events.SELECTION_CHANGED, ({selected}) => {
+            this.deleteEnabled = selected && (selected.length>0);
+        });
+    },
     methods: {
-        sendEvent(eventType) {
-            if (this.eventTarget) {
-                this.eventTarget.dispatchEvent(new CustomEvent(eventType));
-            }
-        },
-        setEventTarget(eventTarget){
-            this.eventTarget = eventTarget;
-            this.eventTarget.addEventListener(Events.CHATTER_SELECTION_CHANGED, (e)=>{
-                console.log(e.detail.selected);
-                this.deleteEnabled = e.detail.selected && (e.detail.selected.length>0);
-            });
-        },
+
         add() {
-            this.sendEvent(Events.CHATTER_ADD);
+            EventBus.$emit(Events.ADD_NODE);
         },
         play() {
-            this.sendEvent(Events.CHATTER_PLAY);
+            EventBus.$emit(Events.PLAY);
         },
         exportStory() {
-            this.sendEvent(Events.CHATTER_EXPORT);
+            EventBus.$emit(Events.EXPORT);
         },
         settings() {
-            this.sendEvent(Events.CHATTER_SETTINGS);
+            EventBus.$emit(Events.SETTINGS);
         },
         upload() {
-            this.sendEvent(Events.CHATTER_UPLOAD);
+            EventBus.$emit(Events.UPLOAD);
         },
         deleteSelected() {
             console.log("deleteSelected");
-            this.sendEvent(Events.CHATTER_DELETE_SELECTED);
+            EventBus.$emit(Events.DELETE_SELECTED);
         }
     }
 });
