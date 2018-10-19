@@ -7,7 +7,7 @@
  * zwirn
 ### GraphEditor 
  * Minimal
- * [X] Id im Square
+ * [x] Id im Square
  * [x] Save
  * [x] Restore
  * [x] SaveOnMove
@@ -20,6 +20,7 @@
  * [x] Remove
  * [x] Add Square/Passage in PassageEditor 
  * [x] Dedicated Start Entry. ()Call it "Start" and it will work)
+ * [ ] Escape to leave dialog
  * [ ] Dedicated End Text
  * [x] Dublicate detection on ID change
  * [ ] Editor Preview scrolling
@@ -60,7 +61,6 @@
 ### Template
  * [ ] Tipp sounds
  * [ ] Bilder
- * [ ] 
     * [ ] Selfies/Kamera einbinden/ 
     * [ ] Bild hochladen. echt. aus Foto Ordner
     * [ ] Bild hochladen aus "virtueller" Foto Ordner. Das Spiel gibt ein paar fotos vor
@@ -88,15 +88,15 @@
  * [ ] Javascript Passages
  * [ ] Non Chat messages/Narrator/Game Over-Screen
  * [ ] Extendability, userdefined Macros
-   * [ ] <<Me "Hello">>
-   * [ ] <<Other "Hello">>
-   * [ ] <<Message "Foo">>
-   * [ ] <<Screen>> <</Screen>>
-   * [ ] <<Timeout 200>>
-   * [ ] <<Image "">>
-   * [ ] <<MeTakeSelfie>>  
-   * [ ] <<MeUploadFile>> 
-   * [ ] <<PushNotification>> may be fake
+   * [ ] `<<Me "Hello">>`
+   * [ ] `<<Other "Hello">>`
+   * [ ] `<<Message "Foo">>`
+   * [ ] `<<Screen>> <</Screen>>`
+   * [ ] `<<Timeout 200>>`
+   * [ ] `<<Image "">>`
+   * [ ] `<<MeTakeSelfie>>`  
+   * [ ] `<<MeUploadFile>>` 
+   * [ ] `<<PushNotification>>` may be fake
  * [ ] Long running timeout. Realtime feature. Does this work in browser
  * [ ] Mobile native compiler  
    

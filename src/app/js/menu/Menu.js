@@ -14,13 +14,13 @@ export default new Vue({
     template: `
             <menu id="menu">
            
-            <button class="btn btn-action btn-primary circle btn-lg play" v-html="PlayIcon" @click="play"></button>
-            <button class="btn btn-action btn-primary circle btn-lg download" v-html="DownloadIcon" @click="exportStory"></button>
-            <button class="btn btn-action btn-primary circle btn-lg upload" v-html="UploadIcon" @click="upload"></button>
-            <!--<button class="btn btn-action btn-primary circle btn-lg upload" v-html="MediaIcon" @click="media"></button>-->
-            <button class="btn btn-action btn-primary circle btn-lg settings" v-html="SettingsIcon" @click="settings"></button>
-             <button class="btn btn-action btn-primary circle btn-lg add" v-html="AddIcon" @click="add"></button>
-             <button class="btn btn-action btn-primary circle btn-lg delete" :disabled="!deleteEnabled" v-html="DeleteIcon" @click="deleteSelected"></button>
+            <button class="btn btn-action btn-primary s-circle btn-lg play" v-html="PlayIcon" @click="play"></button>
+            <button class="btn btn-action btn-primary s-circle btn-lg download" v-html="DownloadIcon" @click="exportStory"></button>
+            <button class="btn btn-action btn-primary s-circle btn-lg upload" v-html="UploadIcon" @click="upload"></button>
+            <!--<button class="btn btn-action btn-primary s-circle btn-lg upload" v-html="MediaIcon" @click="media"></button>-->
+            <button class="btn btn-action btn-primary s-circle btn-lg settings" v-html="SettingsIcon" @click="settings"></button>
+             <button class="btn btn-action btn-primary s-circle btn-lg add" v-html="AddIcon" @click="add"></button>
+             <button class="btn btn-action btn-primary s-circle btn-lg delete" :disabled="!deleteEnabled" v-html="DeleteIcon" @click="deleteSelected"></button>
             </menu>
         `,
     data: {

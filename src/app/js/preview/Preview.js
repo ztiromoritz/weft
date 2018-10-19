@@ -20,7 +20,7 @@ export default new Vue({
                             </div>
                         </div>
                         <div class="form-group column col-3">   
-                            <button class="btn btn-action btn-primary circle btn-lg refresh" v-html="RefreshIcon" @click="refresh"></button>
+                            <button class="btn btn-action btn-primary s-circle btn-lg refresh" v-html="RefreshIcon" @click="refresh"></button>
                         </div>
                     </div>
                 </div>

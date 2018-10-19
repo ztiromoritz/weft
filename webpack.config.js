@@ -9,10 +9,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist/app'), // output directory
         filename: "main.js", // name of the generated bundle
-       // publicPath: "dist/app"
     },
+    mode : 'development',
     devtool: 'source-map',
-
     resolve: {
         alias: {
             vue$: 'vue/dist/vue.esm.js'
@@ -26,26 +25,10 @@ module.exports = {
         new webpack.DefinePlugin({
             TEMPLATE_URL: JSON.stringify(process.env.TEMPLATE_URL)
         })
-        //new CopyWebpackPlugin([ { from: './dist/template', to: './app/template' } ])
     ],
     devServer: {
-
-        /*contentBase: 'dist/app/template/', //disk location
-        watchContentBase: true,
-        setup(app) {
-            app.use('dist/app/template/', express.static('/template/'));
-        }*/
-
-        contentBase: path.join(__dirname, "dist/app"),
-        //openPage: ''
-        // proxy: {
-        //    '/template': {
-        //        target: 'localhost:8888',
-        //        secure: false
-        //    }
-        //}
-    }
-    ,
+        contentBase: path.join(__dirname, "dist/app")
+    },
     module: {
         rules: [
             {
@@ -55,10 +38,6 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: ["style-loader", "css-loader", "sass-loader"]
-            },
-            {
-                test: /\.pug$/,
-                loader: 'pug-loader'
             },
             {
                 test: /\.svg$/,
