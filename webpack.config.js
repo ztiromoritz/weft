@@ -1,5 +1,6 @@
 /* globals require, module, __dirname */
 const path = require('path');
+const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -21,6 +22,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/app/index.html",
             inject: "body"
+        }),
+        new webpack.DefinePlugin({
+            TEMPLATE_URL: JSON.stringify(process.env.TEMPLATE_URL)
         })
         //new CopyWebpackPlugin([ { from: './dist/template', to: './app/template' } ])
     ],

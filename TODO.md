@@ -26,6 +26,8 @@
  * [ ] Simple Fullscreens
  * [ ] Menues
  * [ ] Story: Title and author
+ * [ ] Show weft version
+ * [ ] Tests
  * [ ] Tags
  * [ ] Template link fixed.
  * Extra
@@ -84,8 +86,8 @@
  * [ ] Auto Send settings.
  * [ ] Tags at passages
  * [ ] Javascript Passages
- * [ ] Extendability, userdefined Macros
  * [ ] Non Chat messages/Narrator/Game Over-Screen
+ * [ ] Extendability, userdefined Macros
    * [ ] <<Me "Hello">>
    * [ ] <<Other "Hello">>
    * [ ] <<Message "Foo">>

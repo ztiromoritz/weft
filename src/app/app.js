@@ -14,9 +14,8 @@ import preview from './js/preview/Preview.js';
 import upload from './js/import/Upload.js';
 import Util from './js/Util.js';
 import Generator from './js/Generator.js';
-
+/*global TEMPLATE_URL*/
 Story.fromStorage().then((story) => {
-
 
 
     const $graphElement = document.getElementById('graph');
@@ -28,7 +27,9 @@ Story.fromStorage().then((story) => {
     }
 
 
-    const TEMPLATE_URL = "./template.html";
+    //const TEMPLATE_URL = "./template.html";
+    console.log("TEMPLATE_URL", TEMPLATE_URL);
+    const templateUrl = TEMPLATE_URL || "./template.html";
 //const TEMPLATE_URL = "/weft-pub/template/";  //TODO: fixme !! Quick and dirty;
 //    const TEMPLATE_URL = "/weft/template/";  //TODO: fixme !! Quick and dirty;
 //const TEMPLATE_URL = "http://localhost:8888/template";  //TODO: fixme !! Quick and dirty;
@@ -147,7 +148,7 @@ Story.fromStorage().then((story) => {
 
         $graphElement.addEventListener(Events.CHATTER_PLAY, () => {
             Generator.createGame({
-                    templateUrl: TEMPLATE_URL,
+                    templateUrl: templateUrl,
                     lmnStory: Util.storyToLmn(story)
                 }
             ).then(Generator.toDataUrl
@@ -158,7 +159,7 @@ Story.fromStorage().then((story) => {
 
         $graphElement.addEventListener(Events.CHATTER_EXPORT, () => {
             Generator.createGame({
-                templateUrl: TEMPLATE_URL,
+                templateUrl: templateUrl,
                 lmnStory: Util.storyToLmn(story),
                 internalData: story
             })

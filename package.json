@@ -9,8 +9,8 @@
     "build:js": "webpack",
     "build:template": "node scripts/buildTemplate.js",
     "dev": "run-p dev:app dev:buildTemplate",
-    "dev:app": "webpack-dev-server --open",
-    "dev:template": "node scripts/tmplDev.js",
+    "dev:app": "TEMPLATE_URL=http://127.0.0.1:8888/app/template.html webpack-dev-server --open",
+    "dev:template": "echo '---dont use this-----' node scripts/tmplDev.js",
     "dev:buildTemplate": "node scripts/devBuildTemplate.js",
     "fetchLocalDep": "node scripts/fetchLocal.js"
   },

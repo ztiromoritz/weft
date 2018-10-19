@@ -128,7 +128,7 @@
         return url;
     }
 
-    function getBackgroundStyle(username){
+    function getBackgroundStyle(username) {
         var bg = chatter_util.stringToColour(username);
         var color = chatter_util.invertColor(bg);
         return 'background-color: ' + bg + '; color: ' + color + ';';
@@ -140,73 +140,78 @@
      * @param {{content, user, typing}} msg
      * @param {Function} [done]
      */
-    chatter.addMessage = function (msg, users, done) {
-        var $answerWrapper = document.getElementById('answerInput');
-        var $answerButton = document.getElementById('answerButton');
-        var $messageWrapper = document.createElement("div");
-        $messageWrapper.classList.add("message-wrapper");
-        $messageWrapper.classList.add(msg.user.toLowerCase()==='me'?'me':'other');
-        var $message = document.createElement("div");
-        if (msg.user.toLowerCase() !== 'me') {
+    chatter.addMessage = function (msg, users) {
 
-            var imageUrl = getImageUrl(users,msg.user);
-            if(imageUrl){
-                var $icon = document.createElement("img");
-                $icon.src = imageUrl;
-                $icon.classList.add("user");
-                $messageWrapper.appendChild($icon);
-            }else{
-                var $letter = document.createElement("div");
-                $letter.classList.add("user");
-                $letter.classList.add("letter");
-                $letter.innerHTML = msg.user[0].toUpperCase();
-                $messageWrapper.appendChild($letter);
-            }
-        }
-        $messageWrapper.appendChild($message);
-        $message.classList.add("message");
-        $message.classList.add(msg.user.toLowerCase()==='me'?'me':'other');
-
-        $chat.scrollTop = $chat.scrollHeight;
+        return new Promise(function (resolve, reject) {
 
 
-        var writeTyping = function () {
-            return new Promise(function (resolve) {
-                if (msg.user.toLowerCase() === 'me') {
-                    var $answer = document.createElement('span');
-                    $answer.innerHTML = msg.content;
-                    var handler = bubble($answer, {grow: true});
-                    $answerWrapper.appendChild($answer);
+            var $answerWrapper = document.getElementById('answerInput');
+            var $answerButton = document.getElementById('answerButton');
+            var $messageWrapper = document.createElement("div");
+            $messageWrapper.classList.add("message-wrapper");
+            $messageWrapper.classList.add(msg.user.toLowerCase() === 'me' ? 'me' : 'other');
+            var $message = document.createElement("div");
+            if (msg.user.toLowerCase() !== 'me') {
 
-                    var submitMessage = function () {
-                        removeClass($answerButton, 'glow');
-                        $answerButton.removeEventListener('click', submitMessage);
-                        $chat.appendChild($messageWrapper);
-                        $answer.innerHTML = "";
-                        resolve();
-                    };
-
-                    handler.start(function () {
-                        addClass($answerButton, 'glow');
-                        $answerButton.addEventListener('click', submitMessage);
-                    }, 30);
+                var imageUrl = getImageUrl(users, msg.user);
+                if (imageUrl) {
+                    var $icon = document.createElement("img");
+                    $icon.src = imageUrl;
+                    $icon.classList.add("user");
+                    $messageWrapper.appendChild($icon);
                 } else {
-                    $message.innerHTML = '<div class="content typing"><span></span><span></span><span></span></div>';
-                    $chat.appendChild($messageWrapper);
-                    setTimeout(resolve, msg.typing);
+                    var $letter = document.createElement("div");
+                    $letter.classList.add("user");
+                    $letter.classList.add("letter");
+                    $letter.innerHTML = msg.user[0].toUpperCase();
+                    $messageWrapper.appendChild($letter);
                 }
-            });
-        };
-        var writeMessage = function () {
-            console.log("write message");
-            $message.innerHTML = '<div class="content">' + msg.content + '</div>';
-            $chat.scrollTop = $chat.scrollHeight;
-            if (typeof done === 'function') {
-                done();
             }
-        };
-        writeTyping().then(function () {
-            writeMessage();
+            $messageWrapper.appendChild($message);
+            $message.classList.add("message");
+            $message.classList.add(msg.user.toLowerCase() === 'me' ? 'me' : 'other');
+
+            $chat.scrollTop = $chat.scrollHeight;
+
+
+            var writeTyping = function () {
+                return new Promise(function (resolve) {
+                    if (msg.user.toLowerCase() === 'me') {
+                        var $answer = document.createElement('span');
+                        $answer.innerHTML = msg.content;
+                        var handler = bubble($answer, {grow: true});
+                        $answerWrapper.appendChild($answer);
+
+                        var submitMessage = function () {
+                            removeClass($answerButton, 'glow');
+                            $answerButton.removeEventListener('click', submitMessage);
+                            $chat.appendChild($messageWrapper);
+                            $answer.innerHTML = "";
+                            resolve();
+                        };
+
+                        handler.start(function () {
+                            addClass($answerButton, 'glow');
+                            $answerButton.addEventListener('click', submitMessage);
+                        }, 30);
+                    } else {
+                        $message.innerHTML = '<div class="content typing"><span></span><span></span><span></span></div>';
+                        $chat.appendChild($messageWrapper);
+                        setTimeout(resolve, msg.typing);
+                    }
+                });
+            };
+            var writeMessage = function () {
+                console.log("write message");
+                $message.innerHTML = '<div class="content">' + msg.content + '</div>';
+                speech.say(msg.content.replace(/(<([^>]+)>)/ig, ""));
+                $chat.scrollTop = $chat.scrollHeight;
+                resolve();
+            };
+            writeTyping().then(function () {
+                writeMessage();
+            });
+
         });
     };
 
@@ -231,35 +236,36 @@
 
         dialogStore.addDialog("default", CHATTER_DIALOG);
         var dialog = dialogStore.startDialog("default");
-        var wait = function (timeout, callback) {
-            return function () {
-                setTimeout(callback, timeout);
-            };
+
+        var wait = function (timeout) {
+            return new Promise(function (resolve) {
+                setTimeout(resolve, timeout);
+            });
         };
 
         var nextStep = function (index) {
             var step = dialog.next(index);
-            //console.log('nextStep', step);
             switch (step.getType()) {
                 case Type.MESSAGE:
                     var parsed = parseContent(step.getContent());
-                    chatter.addMessage({
+                    var msg = {
                         user: parsed.user,
                         content: parsed.content,
                         typing: 1500
-                    }, CHATTER_DIALOG.data.users,wait(1500, nextStep));
+                    };
+                    chatter.addMessage(msg, CHATTER_DIALOG.data.users)
+                        .then(wait(1500))
+                        .then(nextStep);
                     break;
                 case Type.QUESTION:
-                    chatter.showOptions(step.getAvailableOptions()).then(function (selectedIndex) {
-                        nextStep(selectedIndex);
-                    });
+                    chatter.showOptions(step.getAvailableOptions())
+                        .then(nextStep);
                     break;
                 case Type.END:
                 case Type.UNFINISHED_DIALOG:
                 default:
             }
         };
-
 
         try {
             dialog.selectStepByLabel('Start');
