@@ -1,5 +1,6 @@
 import Vue from "vue";
 import RefreshIcon from "../../../common/assets/refresh.svg";
+import {EventBus, Events} from "../EventBus";
 
 export default new Vue({
     el: '#preview',
@@ -32,6 +33,13 @@ export default new Vue({
         RefreshIcon,
         active: false,
         iframeSrc: "data:text/html;charset=utf-8,"
+    },
+    created(){
+        EventBus.$on(Events.ESC_PRESSED, ()=>{
+            if(this.active){
+                this.closePreview();
+            }
+        })
     },
     methods: {
         closePreview() {

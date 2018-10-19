@@ -187,6 +187,12 @@ Story.fromStorage().then((story) => {
         });
     });
 
+    window.addEventListener('keyup', (e)=>{
+        if(e.key === 'Escape'){
+            EventBus.$emit(Events.ESC_PRESSED);
+        }
+    });
+
     if (story && story.entries) {
         ui.addEntries(story.entries);
     }

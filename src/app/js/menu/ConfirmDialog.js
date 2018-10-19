@@ -1,5 +1,6 @@
 import Vue from "vue";
 import DialogResult from "./DialogResult";
+import {EventBus, Events} from "../EventBus";
 
 export default new Vue({
     el: '#confirm',
@@ -24,6 +25,13 @@ export default new Vue({
         active : false,
         message : '',
         resolve : null
+    },
+    created(){
+        EventBus.$on(Events.ESC_PRESSED, ()=>{
+            if(this.active){
+                this.cancel();
+            }
+        })
     },
     methods: {
         showDialog(message) {

@@ -1,11 +1,12 @@
 import Vue from "vue";
 import '../avatar/avatar.js';
 import './UserSettings.js';
+import {EventBus, Events} from '../EventBus.js';
 
 export default new Vue({
     el: '#settings',
     template:
-        `<div class="modal chat-modal" v-bind:class="{active: active}" id="settings">
+        `<div   class="modal chat-modal" v-bind:class="{active: active}" id="settings">
             <a href="" class="modal-overlay" aria-label="Close"></a>
             <div class="modal-container">
                 <div class="modal-header">
@@ -52,6 +53,13 @@ export default new Vue({
         },
         closeResolve: null,
         users : []
+    },
+    created(){
+        EventBus.$on(Events.ESC_PRESSED, ()=>{
+            if(this.active){
+                this.closeSettings();
+            }
+        })
     },
     methods: {
         closeSettings() {

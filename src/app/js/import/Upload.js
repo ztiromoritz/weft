@@ -31,6 +31,13 @@ export default new Vue({
         active: false,
 
     },
+    created(){
+        EventBus.$on(Events.ESC_PRESSED, ()=>{
+            if(this.active){
+                this.closeUpload();
+            }
+        })
+    },
     methods: {
         closeUpload() {
             this.active = false;

@@ -20,8 +20,9 @@
  * [x] Remove
  * [x] Add Square/Passage in PassageEditor 
  * [x] Dedicated Start Entry. ()Call it "Start" and it will work)
- * [ ] Escape to leave dialog
+ * [x] Escape to leave dialog
  * [ ] Dedicated End Text
+ * [ ] More clear save behaviour. At the moment it always safes on close.
  * [x] Dublicate detection on ID change
  * [ ] Editor Preview scrolling
  * [ ] Simple Fullscreens

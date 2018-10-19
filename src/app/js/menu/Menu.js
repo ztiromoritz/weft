@@ -38,7 +38,6 @@ export default new Vue({
         });
     },
     methods: {
-
         add() {
             EventBus.$emit(Events.ADD_NODE);
         },

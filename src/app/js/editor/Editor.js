@@ -19,7 +19,7 @@ export default new Vue({
                   <input class="form-input" type="text" id="input-entry-id" placeholder="" v-model="entryId">
     
                   <label class="form-label" for="input-content">Content</label>
-                  <textarea class="form-input" id="input-content" placeholder="" v-model="content" @input="textChanged"></textarea> 
+                  <textarea class="form-input" id="input-content" placeholder="" v-model="content" @input="textChanged"></textarea>
                 </div>
                 
                 <div id="editor-chat-column" class="column col-6">
@@ -39,6 +39,13 @@ export default new Vue({
         messages: [],
         options: [],
         users: {}
+    },
+    created(){
+        EventBus.$on(Events.ESC_PRESSED, ()=>{
+            if(this.active){
+                this.closeEditor();
+            }
+        })
     },
     methods: {
         closeEditor() {
@@ -70,9 +77,6 @@ export default new Vue({
             this.messages = Util.parseMessages(this.content);
             this.options = Util.parseOptions(this.content);
         }
-
-    },
-    created() {
 
     }
 });

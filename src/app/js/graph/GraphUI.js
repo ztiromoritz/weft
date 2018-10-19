@@ -262,10 +262,9 @@ class GraphUI {
     }
 
     onDblClick(element) {
-        const detail = {
+        EventBus.$emit(Events.OPEN_EDITOR, {
             id: element.data('entryId'),
-        };
-        EventBus.$emit(Events.OPEN_EDITOR);
+        });
     };
 
 

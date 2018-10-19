@@ -46,7 +46,7 @@
     "snapsvg-cjs": "0.0.6",
     "spectre.css": "^0.5.3",
     "tracery-grammar": "^2.7.3",
-    "vue": "2.5.13",
-    "vue-template-compiler": "2.5.13"
+    "vue": "2.5.17",
+    "vue-template-compiler": "2.5.17"
   }
 }
