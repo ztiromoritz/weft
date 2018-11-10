@@ -12,7 +12,8 @@ import DialogResult from './js/menu/DialogResult.js';
 import settings from './js/settings/Settings.js';
 import preview from './js/preview/Preview.js';
 import upload from './js/import/Upload.js';
-import Util from './js/Util.js';
+import Transformer from './js/utils/Transformer.js';
+import IdUtil from './js/utils/IdUtil.js';
 import Generator from './js/Generator.js';
 import {EventBus, Events} from './js/EventBus.js';
 
@@ -51,7 +52,7 @@ Story.fromStorage().then((story) => {
 
         //Avoid collision
         if (targetId !== detail.originalId) {
-            targetId = Util.nonCollidingId(targetId, story);
+            targetId = IdUtil.nonCollidingId(targetId, story);
         }
 
 
@@ -67,8 +68,8 @@ Story.fromStorage().then((story) => {
 
             // Update links to changed entry
             if (targetId !== detail.originalId) {
-                entry.data.content = Util.replaceLink(entry.data.content, detail.originalId, targetId);
-                entry.children = getChildren(Util.parseOptions(entry.data.content));
+                entry.data.content = Transformer.replaceLink(entry.data.content, detail.originalId, targetId);
+                entry.children = getChildren(Transformer.parseOptions(entry.data.content));
                 ui.updateEntry(entry);
             }
         });
@@ -108,7 +109,7 @@ Story.fromStorage().then((story) => {
 
     EventBus.$on(Events.ADD_NODE, () => {
         const pos = ui.getFreePosition();
-        const id = Util.nonCollidingId('Unknown', story);
+        const id = IdUtil.nonCollidingId('Unknown', story);
         const newEntry = {
             id,
             pos,
@@ -140,7 +141,7 @@ Story.fromStorage().then((story) => {
     EventBus.$on(Events.PLAY, () => {
         Generator.createGame({
                 templateUrl: templateUrl,
-                lmnStory: Util.storyToLmn(story)
+                lmnStory: Transformer.storyToLmn(story)
             }
         ).then(Generator.toDataUrl
         ).then((dataUrl) => {
@@ -151,7 +152,7 @@ Story.fromStorage().then((story) => {
     EventBus.$on(Events.EXPORT, () => {
         Generator.createGame({
             templateUrl: templateUrl,
-            lmnStory: Util.storyToLmn(story),
+            lmnStory: Transformer.storyToLmn(story),
             internalData: story
         })
             .then(Generator.toDataUrl)
@@ -166,7 +167,7 @@ Story.fromStorage().then((story) => {
                 document.body.removeChild(element);
 
             });
-        console.log(JSON.stringify(Util.storyToLmn(story), null, 2));
+        console.log(JSON.stringify(Transformer.storyToLmn(story), null, 2));
     });
 
     EventBus.$on(Events.SETTINGS, () => {

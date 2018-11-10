@@ -276,11 +276,7 @@
             //error Message
             console.error(e);
         }
-
-
     }
-
-
     return chatter;
 
 }));

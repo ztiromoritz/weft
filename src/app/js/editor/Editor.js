@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import './ChatEditor.js';
-import Util from '../Util.js';
+import Transformer from '../utils/Transformer.js';
 import {EventBus, Events} from '../EventBus.js';
 
 export default new Vue({
@@ -74,8 +74,8 @@ export default new Vue({
             console.log(this.options);
         },
         updateData(){
-            this.messages = Util.parseMessages(this.content);
-            this.options = Util.parseOptions(this.content);
+            this.messages = Transformer.parseCommands(this.content);
+            this.options = Transformer.parseOptions(this.content);
         }
 
     }

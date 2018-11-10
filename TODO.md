@@ -6,45 +6,49 @@
  * heddle - Litze, gibts noch nicht als npm,
  * zwirn
 ### GraphEditor 
+ * Refactor
+   * [ ] Create Command-Components usable in template and editor
+   * [ ] First Example: Message
  * Minimal
- * [x] Id im Square
- * [x] Save
- * [x] Restore
- * [x] SaveOnMove
- * [x] Open editor on square click
- * [x] Editor: Id, Content, 
- * [X] SaveOnCloseEditor
- * [x] Add Square/Passage with Button
- * [x] Single Selection
- * [x] Multiselect
- * [x] Remove
- * [x] Add Square/Passage in PassageEditor 
- * [x] Dedicated Start Entry. ()Call it "Start" and it will work)
- * [x] Escape to leave dialog
- * [ ] Dedicated End Text
- * [ ] More clear save behaviour. At the moment it always safes on close.
- * [x] Dublicate detection on ID change
- * [ ] Editor Preview scrolling
- * [ ] Simple Fullscreens
- * [ ] Menues
- * [ ] Story: Title and author
- * [ ] Show weft version
- * [ ] Tests
- * [ ] Tags
- * [ ] Template link fixed.
+    * [x] Id im Square
+    * [x] Save
+    * [x] Restore
+    * [x] SaveOnMove
+    * [x] Open editor on square click
+    * [x] Editor: Id, Content, 
+    * [X] SaveOnCloseEditor
+    * [x] Add Square/Passage with Button
+    * [x] Single Selection
+    * [x] Multiselect
+    * [x] Remove
+    * [x] Add Square/Passage in PassageEditor 
+    * [x] Dedicated Start Entry. ()Call it "Start" and it will work)
+    * [x] Escape to leave dialog
+    * [ ] Dedicated End Text
+    * [ ] More clear save behaviour. At the moment it always safes on close.
+    * [x] Dublicate detection on ID change
+    * [ ] Editor Preview scrolling
+    * [ ] Simple Fullscreens
+    * [ ] Menues
+    * [ ] Story: Title and author
+    * [ ] Show weft version
+    * [ ] Tests
+    * [ ] Tags
+    * [ ] Template link fixed.
  * Extra
- * [ ] Jump to passage from PassageEditor
- * [ ] Back Button/History Stack in PassageEditor Session
- * [ ] Passage Editor: Warnings when Message after Option
- * [ ] Name der Story: StoryTitle/StoryAuthor passage
- * [ ] CSS: Scroll in Chat Preview is broken
- * [ ] Configure others Avatar and Name
- * [ ] Selection and Drag+Drop of Groups
- * [ ] Infinite canvas 
- * [ ] Naming: Passage, Node, Square 
- * [ ] Grahical squares have form of mobile phone with chat preview.
- * [ ] Scriptability, custom macros
- * [ ] LMN: Message -> Passage, Question -> Decision
+    * [ ] Replace Color/Colour :/
+    * [ ] Jump to passage from PassageEditor
+    * [ ] Back Button/History Stack in PassageEditor Session
+    * [ ] Passage Editor: Warnings when Message after Option
+    * [ ] Name der Story: StoryTitle/StoryAuthor passage
+    * [ ] CSS: Scroll in Chat Preview is broken
+    * [ ] Configure others Avatar and Name
+    * [ ] Selection and Drag+Drop of Groups
+    * [ ] Infinite canvas 
+    * [ ] Naming: Passage, Node, Square 
+    * [ ] Grahical squares have form of mobile phone with chat preview.
+    * [ ] Scriptability, custom macros
+    * [ ] LMN: Message -> Passage, Question -> Decision
 
  
  ### Game generator
@@ -83,6 +87,7 @@
  * [ ] Integrate images from twee files 
  * [ ] Export game from template
  * [ ] Style Template
+ * [ ] Bug: Settings undefined on init
  * [ ] Include svg  https://stackoverflow.com/questions/11978995/how-to-change-color-of-svg-image-using-css-jquery-svg-image-replacement
  * [ ] Auto Send settings.
  * [ ] Tags at passages
@@ -105,6 +110,8 @@
  *     Why so complicated = (IDE in es6 with vue, template: vanilla js)
           * Because hackability of the template should be keept.
           * No further webpack and Api knowledge is needed, when you want to hack the template.
+          * may be only css should be exchangeable
+          * animations with css.
  * Create a Logo
  * Convert the   
  * [x] inline images in user icon 

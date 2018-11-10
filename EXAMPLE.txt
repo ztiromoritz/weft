@@ -1,0 +1,8 @@
+<< me "hello">>
+
+<< Moritz "Hello World">>
+
+<<:say me "Hello" >>
+
+<<:selfie >>
+

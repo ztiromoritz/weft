@@ -10,8 +10,7 @@
     "build:template": "node scripts/buildTemplate.js",
     "dev": "run-p dev:app dev:buildTemplate",
     "dev:app": "TEMPLATE_URL=http://127.0.0.1:8888/app/template.html webpack-dev-server --open",
-    "dev:buildTemplate": "node scripts/devBuildTemplate.js",
-    "fetchLocalDep": "node scripts/fetchLocal.js"
+    "dev:buildTemplate": "node scripts/devBuildTemplate.js"
   },
   "author": "Moritz Rebbert <moritz.rebbert@udo.edu>",
   "license": "ISC",
@@ -40,12 +39,13 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "chai": "^4.2.0",
     "dexie": "^2.0.1",
     "lodash": "^4.17.11",
+    "mocha": "^5.2.0",
     "snapsvg": "^0.5.1",
     "snapsvg-cjs": "0.0.6",
     "spectre.css": "^0.5.3",
-    "tracery-grammar": "^2.7.3",
     "vue": "2.5.17",
     "vue-template-compiler": "2.5.17"
   }
