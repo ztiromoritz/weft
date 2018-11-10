@@ -6,6 +6,46 @@ const randomId = () => {
 };
 
 
+function commandTokens(str = "") {
+    const COMMAND_TOKEN_REGEX = /<<[^<>]*>>/g;
+    return str.match(COMMAND_TOKEN_REGEX) || [];
+}
+
+//syntactic sugar
+function messageShortform(str=""){
+    const MESSAGE = /<<([^:\s]*) (.*)>>/;
+    const result = str.match(MESSAGE);
+    if(!result)
+        return str; //keep it like it is
+    return `<<:msg "${result[1]}" ${result[2]}>>`;
+}
+
+function parseCommand(str="") {
+    str = messageShortform(str);
+    const COMMAND = /<<:([^\s]*) (.*)>>/;
+    const SPLIT_ARGS = /"[^"]*"/g
+    const result = str.match(COMMAND);
+
+    if(!result)
+        return null;
+    const name = result[1];
+    const args = result[2]
+        .trim()
+        .match(SPLIT_ARGS)
+        .map(arg=>arg.slice(1, -1));
+
+
+    return {
+        name,
+        args
+    };
+}
+
+function handleInvalid(str) {
+    return (!!str);
+}
+
+
 /**
  *  Transforms the story representation used in the weft-UI
  *  to a "program" which can be run by the lmn state machine,
@@ -14,14 +54,14 @@ const randomId = () => {
 export default class Transformer {
     /**
      *  Parse commands like:
-     *    <<:foo "arg1" "arg2" "arg3">>
+     *   <<:foo "arg1" "arg2" "arg3">>
      *
      *  Shortform:
      *    <<me "Hello!">>
      *  ... will be transformed to
      *    <<:message "me" "Hello!">>
      */
-    static parseCommands(str) {
+    static parseCommandsOld(str) {
         const MESSAGE_REGEX = /<<([^\s]*) "([^"]*)">>/g;
         const messages = [];
         let match;
@@ -34,6 +74,15 @@ export default class Transformer {
         }
         return messages;
     }
+
+
+    static parseCommands(str) {
+        const commandsToken = commandTokens(str);
+        return commandsToken
+            .map(parseCommand)
+            //.filter(handleInvalid);
+    }
+
 
     /**
      *
@@ -81,22 +130,31 @@ export default class Transformer {
         const lmnDialog = story.entries.map(_ => {
             return {
                 id: _.id,
-                messages: Util.parseCommands(_.data.content),
-                options: Util.parseOptions(_.data.content),
+                messages: Transformer.parseCommands(_.data.content),
+                options: Transformer.parseOptions(_.data.content),
             }
         }).map(_ => {
+
+            // Create LMN Steps
             let result = [];
-            result = result.concat(_.messages.map((m) => {
-                return [m.original];
-            }));
+            result = result.concat(_.messages.map( m => [m]));
             if (_.options.length > 0) {
-                const EMPTY_MESSAGE = '';
+                const EMPTY_MESSAGE = {
+                    // this will be ignored in interpreter
+                    name: 'msg',
+                    args: ['','']
+                };
                 result.push([EMPTY_MESSAGE, _.options.map(o => [o.content, o.link])]);
             }
 
             if (result.length === 0) {
-                result.push(['<<Message "NO MESSAGE FOUND">>']);
+                result.push([{
+                    name: 'msg',
+                    args: ['no message found', 'no message found']
+                }]);
             }
+
+            // Prepend labels
             const endsWithMessages = (_.options.length === 0);
             const first = 0;
             const last = result.length - 1;

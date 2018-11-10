@@ -167,7 +167,7 @@ Story.fromStorage().then((story) => {
                 document.body.removeChild(element);
 
             });
-        console.log(JSON.stringify(Transformer.storyToLmn(story), null, 2));
+        console.log(JSON.stringify(Transformer.storyToLmn(story).dialog, null, 2));
     });
 
     EventBus.$on(Events.SETTINGS, () => {

@@ -247,10 +247,13 @@
             var step = dialog.next(index);
             switch (step.getType()) {
                 case Type.MESSAGE:
-                    var parsed = parseContent(step.getContent());
+                    var command = step.getContent(); // TODO: step.getCommand()
+                    // TODO: assert that every command is :msg for now
+                    if(command.name != 'msg')
+                        throw new Error("Command not supported", command.name)
                     var msg = {
-                        user: parsed.user,
-                        content: parsed.content,
+                        user: command.args[0],
+                        content: command.args[1],
                         typing: 1500
                     };
                     chatter.addMessage(msg, CHATTER_DIALOG.data.users)

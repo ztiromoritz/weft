@@ -33,13 +33,13 @@
     var EMPTY_SET = Object.create(null);
 
     //Simple message, next step is the next command in array.
-    var MESSAGE = STR;
+    var MESSAGE = OBJ;
 
     //Message with label, next step is the next command in array.
-    var LABEL_MESSAGE = STR + STR;
+    var LABEL_MESSAGE = STR + OBJ;
 
     //Message with label, next step is given.
-    var LABEL_MESSAGE_NEXT = STR + STR + STR;
+    var LABEL_MESSAGE_NEXT = STR + OBJ + STR;
 
     // Questions with options
     //If you return to this question, all options will be available again
@@ -50,18 +50,18 @@
     // If you return to this questions, you only see remaining options.
     // If all options are taken. The question will not be presented again
     // and the dialog goes direct to the command given in next.
-    var MESSAGE_OPTIONS_NEXT = STR + ARR + STR;
+    var MESSAGE_OPTIONS_NEXT = OBJ + ARR + STR;
 
     //Question with label and options
     //If you return to this question, all options will be available again
-    var LABEL_MESSAGE_OPTIONS = STR + STR + ARR;
+    var LABEL_MESSAGE_OPTIONS = STR + OBJ + ARR;
 
     // Question with label, options and a default next.
     // Options will be available only once.
     // If you return to this questions, you only see remaining options.
     // If all options are taken. The question will not be presented again
     // and the dialog goes direct to the command given in next.
-    var LABEL_MESSAGE_OPTIONS_NEXT = STR + STR + ARR + STR;
+    var LABEL_MESSAGE_OPTIONS_NEXT = STR + OBJ + ARR + STR;
 
 
     // Type of option entry in options array
