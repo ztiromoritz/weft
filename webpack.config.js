@@ -5,10 +5,15 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: "./src/app/app.js", // bundle's entry point
+    entry: {
+        common : "./src/common/index.js",
+        app :  "./src/app/app.js" // bundle's entry point
+    },
     output: {
+        library: 'weft_[name]',
+        libraryTarget: 'umd',
         path: path.resolve(__dirname, 'dist/app'), // output directory
-        filename: "main.js", // name of the generated bundle
+        filename: "[name].js", // name of the generated bundle
     },
     mode : 'development',
     devtool: 'source-map',

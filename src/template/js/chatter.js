@@ -135,6 +135,11 @@
     }
 
 
+
+    const chatUi = function(){
+
+    }
+
     /**
      *
      * @param {{content, user, typing}} msg

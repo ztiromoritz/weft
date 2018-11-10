@@ -230,5 +230,7 @@ Story.fromStorage().then((story) => {
 
 });
 
+export const debug = {};
+
 
 

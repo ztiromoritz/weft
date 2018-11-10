@@ -12,7 +12,16 @@
         root['lmn'] = factory();
     }
 }(this, function () {
+
+
+
     'use strict';
+
+
+    /**
+     * The project is a naming mess
+     * Note that "commands" in lmn are not the same as "commands" in the story format.
+     */
 
     /**
      *
