@@ -34,7 +34,8 @@ svg .passage.start {
     stroke-width: 5;
 }
 
-svg .selected {
+svg .selected ,
+svg .selected.start{
     stroke: red;
 }
 
