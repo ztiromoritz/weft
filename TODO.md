@@ -32,6 +32,7 @@
     * [ ] CSS Editor for Style Passage.
     * [ ] RAW Editor for simple passage, to use it for twine stories with other templates
     * [ ] Multiple Projects
+    * [ ] Keyboard shortcuts
     * [x] Dublicate detection on ID change
     * [x] Tests
     * [x] Selection and Drag+Drop of Groups

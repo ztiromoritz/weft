@@ -1,5 +1,5 @@
 import Vue from "vue";
-import RefreshIcon from "../../../common/assets/refresh.svg";
+import RefreshIcon from "Assets/refresh.svg";
 import {EventBus, Events} from "../EventBus";
 
 export default new Vue({

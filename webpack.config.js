@@ -7,7 +7,6 @@ const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin
 
 module.exports = {
     entry: {
-        common : "./src/common/index.js",
         app :  "./src/app/app.js",
         chatter : "./src/template/index.js"
     },
@@ -21,7 +20,10 @@ module.exports = {
     devtool: 'source-map',
     resolve: {
         alias: {
-            vue$: 'vue/dist/vue.esm.js'
+            vue$: 'vue/dist/vue.esm.js',
+            Assets: path.resolve(__dirname, 'src/common/assets/'),
+            Common: path.resolve(__dirname, 'src/common/js/'),
+            Components : path.resolve(__dirname, 'src/common/js/components/')
         }
     },
     plugins: [
@@ -29,12 +31,12 @@ module.exports = {
             filename : "index.html",
             template: "./src/app/index.html",
             inject: "body",
-            chunks : ['common', 'app']
+            chunks : [ 'app']
         }),
         new HtmlWebpackPlugin({
             filename : "template.html",
             template: "./src/template/index.html",
-            chunks: ['common', 'chatter'],
+            chunks: ['chatter'],
             inject: "body",
             inlineSource: '.(js|css)$'
         }),

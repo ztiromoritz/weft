@@ -1,11 +1,11 @@
 import Vue from "vue";
-import AddIcon from "../../../common/assets/plus.svg";
-import DownloadIcon from "../../../common/assets/download.svg";
-import PlayIcon from "../../../common/assets/play.svg";
-import SettingsIcon from "../../../common/assets/sliders.svg";
-import DeleteIcon from "../../../common/assets/trash.svg";
-import UploadIcon from "../../../common/assets/upload.svg";
-import MediaIcon from "../../../common/assets/file-image-o.svg";
+import AddIcon from "Assets/plus.svg";
+import DownloadIcon from "Assets/download.svg";
+import PlayIcon from "Assets/play.svg";
+import SettingsIcon from "Assets/sliders.svg";
+import DeleteIcon from "Assets/trash.svg";
+import UploadIcon from "Assets/upload.svg";
+import MediaIcon from "Assets/file-image-o.svg";
 import {EventBus, Events} from '../EventBus.js';
 
 export default new Vue({

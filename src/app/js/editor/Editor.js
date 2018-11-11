@@ -54,7 +54,7 @@ export default new Vue({
                 id: this.entryId,
                 originalId: this.originalId,
                 content: this.content,
-                messages: this.messages,
+                messages: this.x,
                 options: JSON.parse(JSON.stringify(this.options))
             };
             EventBus.$emit(Events.ENTRY_CHANGED, detail);

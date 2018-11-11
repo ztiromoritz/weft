@@ -2,7 +2,7 @@ import Vue from "vue";
 
 
 export default Vue.component('chat-option', {
-    template: `
+    template: `<div>
                     <div>{{content}}</div>
                 </div>`,
     props: [
