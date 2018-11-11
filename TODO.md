@@ -105,14 +105,7 @@
    * [ ] `<<MeUploadFile>>` 
    * [ ] `<<PushNotification>>` may be fake
  * [ ] Long running timeout. Realtime feature. Does this work in browser
- * [ ] Mobile native compiler  
-   
- * [ ] Chat template als es5 lib die an beiden Stellen verwendet werden kann.
- *     Why so complicated = (IDE in es6 with vue, template: vanilla js)
-          * Because hackability of the template should be keept.
-          * No further webpack and Api knowledge is needed, when you want to hack the template.
-          * may be only css should be exchangeable
-          * animations with css.
+ * [ ] Mobile native compiler 
  * Create a Logo
  * Convert the   
  * [x] inline images in user icon 
