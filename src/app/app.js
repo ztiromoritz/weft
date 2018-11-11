@@ -17,6 +17,12 @@ import IdUtil from './js/utils/IdUtil.js';
 import Generator from './js/Generator.js';
 import {EventBus, Events} from './js/EventBus.js';
 
+
+const modals = [settings, preview, upload, editor, confirmDialog];
+const modalActive = () => {
+    return modals.filter(vm=>vm.active).length > 0;
+}
+
 Story.fromStorage().then((story) => {
 
 
@@ -188,9 +194,33 @@ Story.fromStorage().then((story) => {
         });
     });
 
+
+
     window.addEventListener('keyup', (e)=>{
         if(e.key === 'Escape'){
             EventBus.$emit(Events.ESC_PRESSED);
+        }
+        if(!modalActive()){
+            const keyMap = {
+                s : Events.SETTINGS,
+                a : Events.ADD_NODE,
+                i : Events.UPLOAD, // Import
+                b : Events.EXPORT,  // Build
+                p : Events.PLAY
+            };
+            const event = keyMap[e.key];
+            if(event){
+                EventBus.$emit(event);
+            }
+
+            if(e.key === 'e'){
+               const selected =  ui.getSelected();
+               if(selected.length === 1){
+                   EventBus.$emit(Events.OPEN_EDITOR, {
+                       id: selected[0],
+                   });
+               }
+            }
         }
     });
 
@@ -230,7 +260,10 @@ Story.fromStorage().then((story) => {
 
 });
 
-export const debug = {};
+export const debug = {
+    modalActive,
+    modals
+};
 
 
 

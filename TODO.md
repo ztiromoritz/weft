@@ -12,7 +12,8 @@
     * [ ] More clear save behaviour. At the moment it always safes on close.
     * [ ] Editor Preview scrolling
     * [ ] MultilinePreview
-    * [ ] Keyboard shortcuts in editor
+    * [x] Keyboard shortcuts in editor
+      * [ ] Change selected Passage ... ArrowKeys? SHIFT+/ for Quicksearch? ...
     * [ ] Simple Fullscreens
     * [ ] Story: Title and author in Template
     * [ ] Show weft version

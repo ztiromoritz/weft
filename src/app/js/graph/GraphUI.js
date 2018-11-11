@@ -342,6 +342,12 @@ class GraphUI {
         return {x, y};
     }
 
+    getSelected() {
+        return _.values(this.squares)
+            .filter(square => square.element.hasClass('selected'))
+            .map(square => square.element.data('entryId'));
+    }
+
 
 }
 
