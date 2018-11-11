@@ -3,11 +3,13 @@ const path = require('path');
 const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 module.exports = {
     entry: {
         common : "./src/common/index.js",
-        app :  "./src/app/app.js" // bundle's entry point
+        app :  "./src/app/app.js",
+        chatter : "./src/template/index.js"
     },
     output: {
         library: 'weft_[name]',
@@ -24,9 +26,19 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            filename : "index.html",
             template: "./src/app/index.html",
-            inject: "body"
+            inject: "body",
+            chunks : ['common', 'app']
         }),
+        new HtmlWebpackPlugin({
+            filename : "template.html",
+            template: "./src/template/index.html",
+            chunks: ['common', 'chatter'],
+            inject: "body",
+            inlineSource: '.(js|css)$'
+        }),
+        new HtmlWebpackInlineSourcePlugin(),
         new webpack.DefinePlugin({
             TEMPLATE_URL: JSON.stringify(process.env.TEMPLATE_URL)
         })

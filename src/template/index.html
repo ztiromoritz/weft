@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
     <title>Static Template</title>
     <meta name="description" content="Chatter">
-    <meta name="author" content="Moritz Rebbert">
-    <link inline inline-compress rel="stylesheet" href="css/basic.css">
-    <link inline inline-compress rel="stylesheet" href="../common/css/chat.css">
+    <meta name="author" content="">
     <meta name="apple-mobile-web-app-capable" content="yes">
-
 </head>
 
 <body>
@@ -20,7 +16,9 @@
     <div class="options"></div>
     <div class="answer">
         <div class="content" id="answerInput"></div>
-        <div class="send" id="answerButton"><img inline src="../common/assets/paper-plane.svg"></div>
+        <div class="send" id="answerButton">
+            <%= require('!svg-inline-loader!../common/assets/paper-plane.svg')  %>
+        </div>
     </div>
     <footer></footer>
 
@@ -28,12 +26,12 @@
 
     <!-- $INTERNAL_DATA_START$ $WEFT_INTERNAL_DATA$ $INTERNAL_DATA_END$ -->
 
-    <!--<script src="https://cdn.polyfill.io/v2/polyfill.js?features=Promise"></script>-->
+    <!--
     <script inline inline-compress src="lib/lmn.js"></script>
     <script inline inline-compress src="lib/bubble.js"></script>
-    <script inline inline-compress src="../common/js/chatter_util.js"></script>
+    <script inline inline-compress src="../common/index.js"></script>
     <script inline inline-compress src="js/speech.js"></script>
-    <script inline inline-compress src="js/chatter.js"></script>
+    <script inline inline-compress src="js/chatter.js"></script>-->
 </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 import Vue from "vue";
-import chatter_util from "../../../common/js/chatter_util.js";
+const chatter_util = weft_common.ColorUtil;
 
 
 export default Vue.component('chat-message', {

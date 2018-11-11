@@ -93,6 +93,7 @@
  * [ ] Tags at passages
  * [ ] Javascript Passages
  * [ ] Non Chat messages/Narrator/Game Over-Screen
+ * [ ] Add title and author to template
  * [ ] Extendability, userdefined Macros
    * [ ] `<<Me "Hello">>`
    * [ ] `<<Other "Hello">>`

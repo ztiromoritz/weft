@@ -1,4 +1,7 @@
 // entry point for common lib
-export const CommandRegistry = {
+import colorUtil from "./js/utils/ColorUtil.js";
 
-};
+
+export const CommandRegistry = {};
+
+export const ColorUtil = colorUtil;
