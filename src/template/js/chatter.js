@@ -1,38 +1,13 @@
 
-import lmn from '../lib/lmn.js';
 import bubble from '../lib/bubble.js';
+import {addClass, removeClass} from '../../common/js/utils/DomUtils.js';
 'use strict';
 var chatter = {};
 export default chatter;
 var $chat = document.querySelector("#chat");
 
 
-function removeClass(el, className) {
-    if (el.classList)
-        el.classList.remove(className);
-    else
-        el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-}
-
-function addClass(el, className) {
-    if (el.classList)
-        el.classList.add(className);
-    else
-        el.className += ' ' + className;
-}
-
-var regex = /<<([^\s]*) "([^"]*)">>/;
-var parseContent = function (str) {
-    var match = regex.exec(str);
-    console.log(str, match);
-    return {
-        user: match[1].toLowerCase() === 'me' ? "me" : match[1],
-        content: match[2]
-    };
-};
-
 /**
- * !!What a Salad!
  * @param $element
  * @param options
  * @param nextCallback
@@ -122,11 +97,6 @@ function getBackgroundStyle(username) {
     var bg = chatter_util.stringToColour(username);
     var color = chatter_util.invertColor(bg);
     return 'background-color: ' + bg + '; color: ' + color + ';';
-}
-
-
-const chatUi = function () {
-
 }
 
 /**
@@ -223,55 +193,5 @@ chatter.hideErrorMessage = function () {
     removeClass($errorMessage, 'show');
 };
 
-var Type = lmn.Step.Type;
-var dialogStore = new lmn.DialogStore();
 
-if (typeof CHATTER_DIALOG !== 'undefined') {
-
-    dialogStore.addDialog("default", CHATTER_DIALOG);
-    var dialog = dialogStore.startDialog("default");
-
-    var wait = function (timeout) {
-        return new Promise(function (resolve) {
-            setTimeout(resolve, timeout);
-        });
-    };
-
-    var nextStep = function (index) {
-        var step = dialog.next(index);
-        switch (step.getType()) {
-            case Type.MESSAGE:
-                var command = step.getContent(); // TODO: step.getCommand()
-                // TODO: assert that every command is :msg for now
-                if (command.name != 'msg')
-                    throw new Error("Command not supported", command.name)
-                var msg = {
-                    user: command.args[0],
-                    content: command.args[1],
-                    typing: 1500
-                };
-                chatter.addMessage(msg, CHATTER_DIALOG.data.users)
-                    .then(wait(1500))
-                    .then(nextStep);
-                break;
-            case Type.QUESTION:
-                chatter.showOptions(step.getAvailableOptions())
-                    .then(nextStep);
-                break;
-            case Type.END:
-            case Type.UNFINISHED_DIALOG:
-            default:
-        }
-    };
-
-    try {
-        dialog.selectStepByLabel('Start');
-
-        nextStep();
-    } catch (e) {
-        chatter.showErrorMessage(e.message);
-        //error Message
-        console.error(e);
-    }
-}
 

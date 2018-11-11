@@ -6,10 +6,36 @@
  * heddle - Litze, gibts noch nicht als npm,
  * zwirn
 ### GraphEditor 
- * Refactor
-   * [ ] Create Command-Components usable in template and editor
-   * [ ] First Example: Message
- * Minimal
+ * Tickets
+    * [ ] Create Command-Components usable in template and editor
+        * [ ] First Example: Message
+    * [ ] More clear save behaviour. At the moment it always safes on close.
+    * [ ] Editor Preview scrolling
+    * [ ] MultilinePreview
+    * [ ] Keyboard shortcuts in editor
+    * [ ] Simple Fullscreens
+    * [ ] Story: Title and author in Template
+    * [ ] Show weft version
+    * [ ] Tags ... but why.
+    * [ ] Replace Color/Colour :/
+    * [ ] Jump to passage from PassageEditor
+    * [ ] Back Button/History Stack in PassageEditor Session
+    * [ ] Passage Editor: Warnings when Message after Option
+    * [ ] Name der Story: StoryTitle/StoryAuthor passage
+    * [ ] CSS: Scroll in Chat Preview is broken
+    * [ ] Infinite canvas 
+    * [ ] Naming: Passage, Node, Square 
+    * [ ] Grahical squares have form of mobile phone with chat preview.
+    * [ ] Passage shows persons as preview
+    * [ ] Auto graph outliner. 
+    * [ ] Help/Cheatsheet in Passage Editor
+    * [ ] CSS Editor for Style Passage.
+    * [ ] RAW Editor for simple passage, to use it for twine stories with other templates
+    * [ ] Multiple Projects
+    * [x] Dublicate detection on ID change
+    * [x] Tests
+    * [x] Selection and Drag+Drop of Groups
+    * [x] Configure others Avatar and Name
     * [x] Id im Square
     * [x] Save
     * [x] Restore
@@ -24,39 +50,14 @@
     * [x] Add Square/Passage in PassageEditor 
     * [x] Dedicated Start Entry. ()Call it "Start" and it will work)
     * [x] Escape to leave dialog
-    * [ ] Dedicated End Text
-    * [ ] More clear save behaviour. At the moment it always safes on close.
-    * [x] Dublicate detection on ID change
-    * [ ] Editor Preview scrolling
-    * [ ] Simple Fullscreens
-    * [ ] Menues
-    * [ ] Story: Title and author
-    * [ ] Show weft version
-    * [ ] Tests
-    * [ ] Tags
-    * [ ] Template link fixed.
- * Extra
-    * [ ] Replace Color/Colour :/
-    * [ ] Jump to passage from PassageEditor
-    * [ ] Back Button/History Stack in PassageEditor Session
-    * [ ] Passage Editor: Warnings when Message after Option
-    * [ ] Name der Story: StoryTitle/StoryAuthor passage
-    * [ ] CSS: Scroll in Chat Preview is broken
-    * [ ] Configure others Avatar and Name
-    * [ ] Selection and Drag+Drop of Groups
-    * [ ] Infinite canvas 
-    * [ ] Naming: Passage, Node, Square 
-    * [ ] Grahical squares have form of mobile phone with chat preview.
-    * [ ] Scriptability, custom macros
-    * [ ] LMN: Message -> Passage, Question -> Decision
 
- 
  ### Game generator
+  * [ ] Twee import/export
+  * [ ] inky
   * [x] Export/Build HTML
     * [x] Model to twee
     * [x] twee to lmn
-  * [ ] Import from HTML (keep the model!!)
-  * [ ] Twee import/export
+  * [x] Import from HTML (keep the model!!)
   * [x] Inline svg
   * [x] Inline base64
   * [x] Inline scripts
@@ -65,6 +66,14 @@
  
 ### Template
  * [ ] Tipp sounds
+ * [x] UI engine
+    * [x] ui.sendMessage()
+    * [x] ui.clearScreen()
+    * [x] ui.showImage()
+    * [x] ui.takeFoto()
+    * [x] ui.showNotification()
+    * [x] ui.showIframe() // Minigame...
+    * [x] etc. this could be scripted without the editor
  * [ ] Bilder
     * [ ] Selfies/Kamera einbinden/ 
     * [ ] Bild hochladen. echt. aus Foto Ordner
@@ -74,9 +83,10 @@
             -> https://github.com/ztiromoritz/bubble/
  * [X] Auswahl on QUESTION
  * [ ] Themes
- * [ ] Build in twemoji-awesome.css
  * [x] twee2lmn.js
  * [x] Start => Api und Buttons 
+ * [ ] Markup?
+ * [ ] Build in twemoji-awesome.css
  * [ ] Pause => Api und Buttons 
  * [ ] Save state to localStorage.
  * [ ] LMN -> Aufzeichnung/Log und Replay.
@@ -104,6 +114,7 @@
    * [ ] `<<MeTakeSelfie>>`  
    * [ ] `<<MeUploadFile>>` 
    * [ ] `<<PushNotification>>` may be fake
+   * [ ] Dedicated End Text
  * [ ] Long running timeout. Realtime feature. Does this work in browser
  * [ ] Mobile native compiler 
  * Create a Logo
@@ -113,13 +124,10 @@
  * [ ] inline images in chat content
  * [ ] Project mit allen Sourcen und Assets
  * [x] IndexDB für die Dateien.
- * [ ] Import/Export Twee 
- * [ ] Import/Export des Projects
- * [ ] Auto graph outliner. 
- * [ ] Help/Cheatsheet in Passage Editor
- * [ ] CSS Editor for Style Passage.
- * [ ] RAW Editor for simple passage, to use it for twine stories with other templates
+ * [x] Import/Export des Projects
 
+
+* Resource Server ??? Simple solution
  
 ## Links
  * [https://leaverou.github.io/bubbly/](https://leaverou.github.io/bubbly/)
