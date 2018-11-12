@@ -96,7 +96,7 @@ const CONNECTION_CONF = {
     straight: true
 };
 
-const SQUARE_SIZE = 80;
+const SQUARE_SIZE = 60;
 
 class GraphUI {
 

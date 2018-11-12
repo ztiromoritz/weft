@@ -47,8 +47,8 @@ svg .selector-frame {
 
 .text-box {
     position: absolute;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background-color: rgba(0,0,0,0);
     pointer-events: none;
     text-align: center;
@@ -171,7 +171,7 @@ svg .selector-frame {
 }
 
 .editor-columns {
-    height: 68vh;
+    height: 60vh;
 }
 
 #editor-chat-column {
@@ -190,9 +190,14 @@ svg .selector-frame {
 }
 
 
-.editor-columns textarea.form-input {
+.editor-columns textarea.form-input,
+.vue-codemirror.passage {
     flex: 1;
 
+}
+
+.vue-codemirror.passage .CodeMirror {
+    height: 100%;
 }
 
 

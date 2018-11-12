@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import './ChatEditor.js';
+import {codemirror} from 'vue-codemirror'
+import './ConfigureCodeMirror.js'
 import Transformer from '../utils/Transformer.js';
 import {EventBus, Events} from '../EventBus.js';
+
 
 export default new Vue({
     el: '#editor',
@@ -15,11 +18,19 @@ export default new Vue({
         <div class="modal-body">
             <div class="content columns editor-columns">
                 <div id="editor-form-column" class="form-group column col-6">
-                  <label class="form-label" for="input-entry-id">Id</label>
+                 <!-- <label class="form-label" for="input-entry-id">Id</label> -->
                   <input class="form-input" type="text" id="input-entry-id" placeholder="" v-model="entryId">
     
-                  <label class="form-label" for="input-content">Content</label>
-                  <textarea class="form-input" id="input-content" placeholder="" v-model="content" @input="textChanged"></textarea>
+                  <!-- <label class="form-label" for="input-content">Content</label> -->
+                  <!--<textarea class="form-input" id="input-content" placeholder="" v-model="content" @input="textChanged"></textarea>-->
+                  
+                   <codemirror 
+                       class="passage form-input"
+                        v-model="content" 
+                        :options="cmOptions"
+                        @input="textChanged">
+                    </codemirror>
+                  
                 </div>
                 
                 <div id="editor-chat-column" class="column col-6">
@@ -38,7 +49,12 @@ export default new Vue({
         content: "",
         messages: [],
         options: [],
-        users: {}
+        users: {},
+        cmOptions: {
+            tabSize: 4,
+            mode: 'weft',
+            theme: 'neo'
+        }
     },
     created(){
         EventBus.$on(Events.ESC_PRESSED, ()=>{
@@ -46,6 +62,9 @@ export default new Vue({
                 this.closeEditor();
             }
         })
+    },
+    components: {
+        codemirror
     },
     methods: {
         closeEditor() {
